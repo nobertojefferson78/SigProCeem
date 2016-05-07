@@ -1,21 +1,30 @@
 package modelos;
 
-public class Endereco {
+import java.io.Serializable;
 
-	private int id;
-	private int numero, cep;
-	private String rua, bairro, cidade;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+@Entity
+public class Endereco extends BaseEntity implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	
+	@Column
+	private int numero;
+	@Column(length = 9)
+	private int cep;
+	@Column
+	private String rua;
+	@Column
+	private String bairro;
+	@Column
+	private String cidade;
 	
 	public Endereco() {
 		
 	}
 
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
 	public int getNumero() {
 		return numero;
 	}

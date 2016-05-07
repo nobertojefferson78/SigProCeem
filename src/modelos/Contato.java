@@ -1,20 +1,24 @@
 package modelos;
 
-public class Contato {
+import java.io.Serializable;
 
-	private int id;
-	private String email, telefone;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+@Entity
+public class Contato extends BaseEntity implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
+	@Column
+	private String email;
+	@Column(length = 14)
+	private String telefone;
 	
 	public Contato() {
 		
 	}
 
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
 	public String getEmail() {
 		return email;
 	}

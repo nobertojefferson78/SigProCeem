@@ -3,10 +3,28 @@ package modelos;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+@Entity
 public class Aluno extends Pessoa {
 	
-	private String opcaoLingua, localCurso, turno, fotoCaminho;
+	private static final long serialVersionUID = 1L;
+	
+	@Column
+	private String opcaoLingua;
+	@Column
+	private String localCurso;
+	@Column
+	private String turno;
+	@Column
+	private String fotoCaminho;
+	@OneToOne(cascade = {CascadeType.ALL})
 	private HistoricoEscolar historicoEscolar;
+	@OneToMany
 	private List<NotaSimulado> notasSimulados;
 	
 	public Aluno() {

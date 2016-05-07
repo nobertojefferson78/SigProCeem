@@ -1,12 +1,21 @@
 package modelos;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class Disciplina {
+import javax.persistence.Column;
+import javax.persistence.Entity;
 
-	private int id;
-	private String turno, horario;
+@Entity
+public class Disciplina extends BaseEntity implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
+	@Column
+	private String turno;
+	@Column
+	private String horario;
 	private Professor professor;
 	private List<Frequencia> frequencias;
 	
@@ -18,12 +27,6 @@ public class Disciplina {
 		
 	}
 	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
 	public String getTurno() {
 		return turno;
 	}

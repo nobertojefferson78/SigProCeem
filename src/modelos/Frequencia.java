@@ -1,11 +1,21 @@
 package modelos;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class Frequencia {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
+@Entity
+public class Frequencia extends BaseEntity implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
+	@Column
 	private Date data;
+	@OneToMany
 	private List<Aluno> alunos;
 	
 	public Frequencia() {

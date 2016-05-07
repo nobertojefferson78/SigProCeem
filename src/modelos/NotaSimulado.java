@@ -1,23 +1,25 @@
 package modelos;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class NotaSimulado {
+import javax.persistence.Column;
+import javax.persistence.Entity;
 
-	private int id;
+@Entity
+public class NotaSimulado extends BaseEntity implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
+	@Column
 	private double nota;
+	@Column
 	private Date data;
 	
 	public NotaSimulado() {
 		
 	}
 	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
 	public double getNota() {
 		return nota;
 	}

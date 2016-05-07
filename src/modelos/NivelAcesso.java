@@ -1,20 +1,24 @@
 package modelos;
 
-public class NivelAcesso {
+import java.io.Serializable;
 
-	private int id;
-	private String nomeNivel, descricao;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+@Entity
+public class NivelAcesso extends BaseEntity implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
+	@Column
+	private String nomeNivel;
+	@Column
+	private String descricao;
 	
 	public NivelAcesso() {
 		
 	}
 	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
 	public String getNomeNivel() {
 		return nomeNivel;
 	}
