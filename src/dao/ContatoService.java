@@ -1,16 +1,18 @@
 package dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityNotFoundException;
 
-import modelos.Frequencia;
+import modelos.Contato;
 
-public class FrequenciaService {
+public class ContatoService {
 
 	private EntityManagerFactory emf = null;
 
-	public FrequenciaService(EntityManagerFactory emf) {
+	public ContatoService(EntityManagerFactory emf) {
 		this.setEmf(emf);
 	}
 	
@@ -18,70 +20,84 @@ public class FrequenciaService {
 		return this.getEmf().createEntityManager();
 	}
 	
-	public Frequencia criarFrequencia(Frequencia frequencia) {
+	public Contato inserirContato(Contato contato) {
 		EntityManager em = null;
 		try {
 			em = getEntityManager();
 			em.getTransaction().begin();
-			em.persist(frequencia);
+			em.persist(contato);
 			em.flush();
-			em.refresh(frequencia);
+			em.refresh(contato);
 			em.getTransaction().commit();
 		} catch(Exception e) {
-			System.out.println("erro ao inserir frequencia");
+			e.printStackTrace();
 		} finally {
 			if(em != null) {
 				em.close();
 			}
 		}
-		
-		return frequencia;
+		return contato;
 	}
-	public Frequencia procurarPorID(Integer id) {
+	public Contato buscarPorID (Integer id) {
 		EntityManager em = null;
 		try {
 			em = getEntityManager();
-			return em.find(Frequencia.class, id);
-		} catch(Exception e) {
-			System.out.println("erro ao buscar frequencia");
+			return em.find(Contato.class, id);
 		} finally {
 			if(em != null) {
 				em.close();
 			}
 		}
-		return null;
 	}
-	public void atualizar(Frequencia frequencia) {
+	@SuppressWarnings("unchecked")
+	public List<Contato> buscarTodos() {
+		List<Contato> result = null;
+		EntityManager em = null;
+        try {
+            em = this.getEntityManager();
+            em.getTransaction().begin();
+            result = em.createNamedQuery("Endereco.findAll").getResultList();
+            em.getTransaction().commit();
+        } catch(Exception e) {
+            e.printStackTrace();
+        } finally {
+            if(em != null) {
+                em.close();
+            }
+        }
+		return result;
+	}
+	public void atualizarContato(Contato contato) {
 		EntityManager em = null;
 		try {
 			em = getEntityManager();
             em.getTransaction().begin();
-            em.merge(frequencia);
+            em.merge(contato);
             em.getTransaction().commit();
 
 		} catch(Exception e) {
-			System.out.println("erro ao atualizar frequencia");
+			e.printStackTrace();
 		} finally {
 			if(em != null) {
 				em.close();
 			}
 		}
 	}
-	public void remover(Integer id) {
+	public void removerContato(Integer id) {
 		EntityManager em = null;
 		try {
 			em = getEntityManager();
 			em.getTransaction().begin();
-			Frequencia frequencia = new Frequencia();
+			Contato contato = new Contato();
 			try {
-				frequencia = em.getReference(Frequencia.class, id);
+				contato = em.getReference(Contato.class, id);
 			} catch(EntityNotFoundException e) {
-				System.out.println("erro ao encontrar frequencia");
+				e.printStackTrace();
 			}
-			em.remove(frequencia);
+			em.remove(contato);
 			em.getTransaction().commit();
 		} catch(Exception e) {
-			System.out.println("erro ao remover frequencia");
+			e.printStackTrace();
 		} finally {
 			if(em != null) {
 				em.close();

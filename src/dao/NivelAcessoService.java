@@ -1,7 +1,10 @@
 package dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityNotFoundException;
 
 import modelos.NivelAcesso;
 
@@ -17,7 +20,7 @@ public class NivelAcessoService {
 		return this.getEmf().createEntityManager();
 	}
 	
-	public NivelAcesso criarNivelAcesso(NivelAcesso nivelAcesso) {
+	public NivelAcesso inserirNivelAcesso(NivelAcesso nivelAcesso) {
 		EntityManager em = null;
 		try {
 			em = getEntityManager();
@@ -27,7 +30,7 @@ public class NivelAcessoService {
 			em.refresh(nivelAcesso);
 			em.getTransaction().commit();
 		} catch(Exception e) {
-			System.out.println("erro ao criar nivel de acesso");
+			e.printStackTrace();
 		} finally {
 			if(em != null) {
 				em.close();
@@ -40,16 +43,31 @@ public class NivelAcessoService {
 		try {
 			em = getEntityManager();
 			return em.find(NivelAcesso.class, id);
-		} catch(Exception e) {
-			System.out.println("erro ao buscar nivel de acesso");
-		} finally {
+		}  finally {
 			if(em != null) {
 				em.close();
 			}
 		}
-		return null;
 	}
-	public void atualizar(NivelAcesso nivelAcesso) {
+	@SuppressWarnings("unchecked")
+	public List<NivelAcesso> buscarTodos() {
+        List<NivelAcesso> resultado = null;
+        EntityManager em = null;
+        try {
+            em = this.getEntityManager();
+            em.getTransaction().begin();
+            resultado = em.createNamedQuery("NivelAcesso.findAll").getResultList();
+            em.getTransaction().commit();
+        } catch(Exception e) {
+            e.printStackTrace();
+        } finally {
+            if(em != null) {
+                em.close();
+            }
+        }
+        return resultado;
+	}
+	public void atualizarNivelAcesso(NivelAcesso nivelAcesso) {
 		EntityManager em = null;
 		try {
 			em = getEntityManager();
@@ -58,7 +76,28 @@ public class NivelAcessoService {
             em.getTransaction().commit();
 
 		} catch(Exception e) {
-			System.out.println("erro ao atualizar nivel de acesso");
+			e.printStackTrace();
+		} finally {
+			if(em != null) {
+				em.close();
+			}
+		}
+	}
+	public void remover(Integer id) {
+		EntityManager em = null;
+		try {
+			em = getEntityManager();
+			em.getTransaction().begin();
+			NivelAcesso nivelAcesso = new NivelAcesso();
+			try {
+				nivelAcesso = em.getReference(NivelAcesso.class, id);
+			} catch(EntityNotFoundException e) {
+				e.printStackTrace();
+			}
+			em.remove(nivelAcesso);
+			em.getTransaction().commit();
+		} catch(Exception e) {
+			e.printStackTrace();
 		} finally {
 			if(em != null) {
 				em.close();

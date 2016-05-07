@@ -5,6 +5,8 @@
     <persistence-unit name="SigProCemPU" transaction-type="RESOURCE_LOCAL">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 
+		<class>modelos.Contato</class>
+		<class>modelos.Endereco</class>
         <class>modelos.NivelAcesso</class>
 
         <properties>

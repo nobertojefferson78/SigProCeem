@@ -4,8 +4,13 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "Contato.findAll", query = "SELECT c FROM Contato c")
+})
 public class Contato extends BaseEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
