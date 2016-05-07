@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Disciplina extends BaseEntity implements Serializable {
@@ -16,7 +18,9 @@ public class Disciplina extends BaseEntity implements Serializable {
 	private String turno;
 	@Column
 	private String horario;
+	@OneToOne
 	private Professor professor;
+	@OneToMany
 	private List<Frequencia> frequencias;
 	
 	public Disciplina() {

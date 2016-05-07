@@ -1,10 +1,18 @@
 package modelos;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class DisponibilidadeHorario {
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
+@Entity
+public class DisponibilidadeHorario extends BaseEntity implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
+	@OneToMany
 	private List<Date> datas;
 	
 	public DisponibilidadeHorario() {

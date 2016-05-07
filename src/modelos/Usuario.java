@@ -1,8 +1,19 @@
 package modelos;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+
+@Entity
 public class Usuario extends Pessoa {
 
-	private String login, senha;
+	private static final long serialVersionUID = 1L;
+	
+	@Column
+	private String login;
+	@Column
+	private String senha;
+	@OneToOne
 	private NivelAcesso nivelAcesso;
 	
 	public Usuario() {
