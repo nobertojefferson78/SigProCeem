@@ -6,13 +6,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityNotFoundException;
 
-import modelos.NivelAcesso;
+import modelos.DisponibilidadeHorario;
 
-public class NivelAcessoService {
-	
+public class DisponibilidadeHorarioService {
+
 	private EntityManagerFactory emf = null;
-	
-	public NivelAcessoService(EntityManagerFactory emf) {
+
+	public DisponibilidadeHorarioService(EntityManagerFactory emf) {
 		this.setEmf(emf);
 	}
 	
@@ -20,14 +20,14 @@ public class NivelAcessoService {
 		return this.getEmf().createEntityManager();
 	}
 	
-	public NivelAcesso inserir(NivelAcesso nivelAcesso) {
+	public DisponibilidadeHorario inserir(DisponibilidadeHorario disponibilidadeHorario) {
 		EntityManager em = null;
 		try {
 			em = getEntityManager();
 			em.getTransaction().begin();
-			em.persist(nivelAcesso);
+			em.persist(disponibilidadeHorario);
 			em.flush();
-			em.refresh(nivelAcesso);
+			em.refresh(disponibilidadeHorario);
 			em.getTransaction().commit();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -36,27 +36,27 @@ public class NivelAcessoService {
 				em.close();
 			}
 		}
-		return nivelAcesso;
+		return disponibilidadeHorario;
 	}
-	public NivelAcesso buscarPorID(Integer id) {
+	public DisponibilidadeHorario buscarPorID (Integer id) {
 		EntityManager em = null;
 		try {
 			em = getEntityManager();
-			return em.find(NivelAcesso.class, id);
-		}  finally {
+			return em.find(DisponibilidadeHorario.class, id);
+		} finally {
 			if(em != null) {
 				em.close();
 			}
 		}
 	}
 	@SuppressWarnings("unchecked")
-	public List<NivelAcesso> buscarTodos() {
-        List<NivelAcesso> resultado = null;
-        EntityManager em = null;
+	public List<DisponibilidadeHorario> buscarTodos() {
+		List<DisponibilidadeHorario> result = null;
+		EntityManager em = null;
         try {
             em = this.getEntityManager();
             em.getTransaction().begin();
-            resultado = em.createNamedQuery("NivelAcesso.findAll").getResultList();
+            result = em.createNamedQuery("DisponibilidadeHorario.findAll").getResultList();
             em.getTransaction().commit();
         } catch(Exception e) {
             e.printStackTrace();
@@ -65,14 +65,14 @@ public class NivelAcessoService {
                 em.close();
             }
         }
-        return resultado;
+		return result;
 	}
-	public void atualizar(NivelAcesso nivelAcesso) {
+	public void atualizar(DisponibilidadeHorario disponibilidadeHorario) {
 		EntityManager em = null;
 		try {
 			em = getEntityManager();
             em.getTransaction().begin();
-            em.merge(nivelAcesso);
+            em.merge(disponibilidadeHorario);
             em.getTransaction().commit();
 
 		} catch(Exception e) {
@@ -88,13 +88,13 @@ public class NivelAcessoService {
 		try {
 			em = getEntityManager();
 			em.getTransaction().begin();
-			NivelAcesso nivelAcesso = new NivelAcesso();
+			DisponibilidadeHorario disponibilidadeHorario = new DisponibilidadeHorario();
 			try {
-				nivelAcesso = em.getReference(NivelAcesso.class, id);
+				disponibilidadeHorario = em.getReference(DisponibilidadeHorario.class, id);
 			} catch(EntityNotFoundException e) {
 				e.printStackTrace();
 			}
-			em.remove(nivelAcesso);
+			em.remove(disponibilidadeHorario);
 			em.getTransaction().commit();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -104,7 +104,7 @@ public class NivelAcessoService {
 			}
 		}
 	}
-
+	
 	public EntityManagerFactory getEmf() {
 		return emf;
 	}

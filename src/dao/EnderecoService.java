@@ -20,7 +20,7 @@ public class EnderecoService {
 		return this.getEmf().createEntityManager();
 	}
 	
-	public Endereco inserirEndereco(Endereco endereco) {
+	public Endereco inserir(Endereco endereco) {
 		EntityManager em = null;
 		try {
 			em = getEntityManager();
@@ -30,7 +30,7 @@ public class EnderecoService {
 			em.refresh(endereco);
 			em.getTransaction().commit();
 		} catch(Exception e) {
-			System.out.println("erro ao inserir endereço");
+			e.printStackTrace();
 		} finally {
 			if(em != null) {
 				em.close();
@@ -67,7 +67,7 @@ public class EnderecoService {
 		}
 		return result;
 	}
-	public void atualizarEndereco(Endereco endereco) {
+	public void atualizar(Endereco endereco) {
 		EntityManager em = null;
 		try {
 			em = getEntityManager();

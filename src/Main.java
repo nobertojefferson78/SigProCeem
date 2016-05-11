@@ -20,12 +20,13 @@ public class Main {
 		na2.setNomeNivel("AuxAdm");
 		na3.setNomeNivel("Prof");
 		
-		na1 = nas.inserirNivelAcesso(na1);
-		na2 = nas.inserirNivelAcesso(na2);
+		na1 = nas.inserir(na1);
+		na2 = nas.inserir(na2);
 		
 		niveis = nas.buscarTodos();
 		
 		for(NivelAcesso na: niveis) {
+			System.out.println(na.getId() + "");
 			System.out.println(na.getNomeNivel());
 		}
 	}

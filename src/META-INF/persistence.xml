@@ -5,9 +5,16 @@
     <persistence-unit name="SigProCemPU" transaction-type="RESOURCE_LOCAL">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 
+		<class>modelos.Aluno</class>
 		<class>modelos.Contato</class>
+		<class>modelos.Disciplina</class>
+		<class>modelos.DisponibilidadeHorario</class>
 		<class>modelos.Endereco</class>
+		<class>modelos.Frequencia</class>
+		<class>modelos.HistoricoEscolar</class>
         <class>modelos.NivelAcesso</class>
+        <class>modelos.NotaSimulado</class>
+        <class>modelos.Professor</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>

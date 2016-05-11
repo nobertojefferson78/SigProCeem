@@ -20,7 +20,7 @@ public class ContatoService {
 		return this.getEmf().createEntityManager();
 	}
 	
-	public Contato inserirContato(Contato contato) {
+	public Contato inserir(Contato contato) {
 		EntityManager em = null;
 		try {
 			em = getEntityManager();
@@ -56,7 +56,7 @@ public class ContatoService {
         try {
             em = this.getEntityManager();
             em.getTransaction().begin();
-            result = em.createNamedQuery("Endereco.findAll").getResultList();
+            result = em.createNamedQuery("Contato.findAll").getResultList();
             em.getTransaction().commit();
         } catch(Exception e) {
             e.printStackTrace();
@@ -67,7 +67,7 @@ public class ContatoService {
         }
 		return result;
 	}
-	public void atualizarContato(Contato contato) {
+	public void atualizar(Contato contato) {
 		EntityManager em = null;
 		try {
 			em = getEntityManager();
@@ -83,7 +83,7 @@ public class ContatoService {
 			}
 		}
 	}
-	public void removerContato(Integer id) {
+	public void remover(Integer id) {
 		EntityManager em = null;
 		try {
 			em = getEntityManager();

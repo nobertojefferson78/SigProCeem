@@ -6,13 +6,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityNotFoundException;
 
-import modelos.NivelAcesso;
+import modelos.Professor;
 
-public class NivelAcessoService {
-	
+public class ProfessorService {
+
 	private EntityManagerFactory emf = null;
-	
-	public NivelAcessoService(EntityManagerFactory emf) {
+
+	public ProfessorService(EntityManagerFactory emf) {
 		this.setEmf(emf);
 	}
 	
@@ -20,14 +20,14 @@ public class NivelAcessoService {
 		return this.getEmf().createEntityManager();
 	}
 	
-	public NivelAcesso inserir(NivelAcesso nivelAcesso) {
+	public Professor inserir(Professor professor) {
 		EntityManager em = null;
 		try {
 			em = getEntityManager();
 			em.getTransaction().begin();
-			em.persist(nivelAcesso);
+			em.persist(professor);
 			em.flush();
-			em.refresh(nivelAcesso);
+			em.refresh(professor);
 			em.getTransaction().commit();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -36,27 +36,27 @@ public class NivelAcessoService {
 				em.close();
 			}
 		}
-		return nivelAcesso;
+		return professor;
 	}
-	public NivelAcesso buscarPorID(Integer id) {
+	public Professor buscarPorID(Integer id) {
 		EntityManager em = null;
 		try {
 			em = getEntityManager();
-			return em.find(NivelAcesso.class, id);
-		}  finally {
+			return em.find(Professor.class, id);
+		} finally {
 			if(em != null) {
 				em.close();
 			}
 		}
 	}
 	@SuppressWarnings("unchecked")
-	public List<NivelAcesso> buscarTodos() {
-        List<NivelAcesso> resultado = null;
-        EntityManager em = null;
+	public List<Professor> buscarTodos() {
+		List<Professor> result = null;
+		EntityManager em = null;
         try {
             em = this.getEntityManager();
             em.getTransaction().begin();
-            resultado = em.createNamedQuery("NivelAcesso.findAll").getResultList();
+            result = em.createNamedQuery("Professor.findAll").getResultList();
             em.getTransaction().commit();
         } catch(Exception e) {
             e.printStackTrace();
@@ -65,14 +65,14 @@ public class NivelAcessoService {
                 em.close();
             }
         }
-        return resultado;
+		return result;
 	}
-	public void atualizar(NivelAcesso nivelAcesso) {
+	public void atualizar(Professor professor) {
 		EntityManager em = null;
 		try {
 			em = getEntityManager();
             em.getTransaction().begin();
-            em.merge(nivelAcesso);
+            em.merge(professor);
             em.getTransaction().commit();
 
 		} catch(Exception e) {
@@ -88,13 +88,13 @@ public class NivelAcessoService {
 		try {
 			em = getEntityManager();
 			em.getTransaction().begin();
-			NivelAcesso nivelAcesso = new NivelAcesso();
+			Professor professor = new Professor();
 			try {
-				nivelAcesso = em.getReference(NivelAcesso.class, id);
+				professor = em.getReference(Professor.class, id);
 			} catch(EntityNotFoundException e) {
 				e.printStackTrace();
 			}
-			em.remove(nivelAcesso);
+			em.remove(professor);
 			em.getTransaction().commit();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -104,7 +104,7 @@ public class NivelAcessoService {
 			}
 		}
 	}
-
+	
 	public EntityManagerFactory getEmf() {
 		return emf;
 	}

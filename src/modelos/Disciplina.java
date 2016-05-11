@@ -6,10 +6,15 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "Disciplina.findAll", query = "SELECT d FROM Disciplina d")
+})
 public class Disciplina extends BaseEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;

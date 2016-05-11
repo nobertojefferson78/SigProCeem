@@ -6,10 +6,15 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "Alunos.FindAll", query = "SELECT a FROM Aluno a")
+})
 public class Aluno extends Pessoa {
 	
 	private static final long serialVersionUID = 1L;

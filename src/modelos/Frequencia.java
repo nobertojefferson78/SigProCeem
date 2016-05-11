@@ -6,9 +6,14 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "Frequencia.findAll", query = "SELECT f FROM Frequencia f")
+})
 public class Frequencia extends BaseEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;

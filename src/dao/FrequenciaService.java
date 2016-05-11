@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityNotFoundException;
@@ -18,7 +20,7 @@ public class FrequenciaService {
 		return this.getEmf().createEntityManager();
 	}
 	
-	public Frequencia criarFrequencia(Frequencia frequencia) {
+	public Frequencia inserir(Frequencia frequencia) {
 		EntityManager em = null;
 		try {
 			em = getEntityManager();
@@ -28,7 +30,7 @@ public class FrequenciaService {
 			em.refresh(frequencia);
 			em.getTransaction().commit();
 		} catch(Exception e) {
-			System.out.println("erro ao inserir frequencia");
+			e.printStackTrace();
 		} finally {
 			if(em != null) {
 				em.close();
@@ -37,19 +39,34 @@ public class FrequenciaService {
 		
 		return frequencia;
 	}
-	public Frequencia procurarPorID(Integer id) {
+	public Frequencia buscarPorID(Integer id) {
 		EntityManager em = null;
 		try {
 			em = getEntityManager();
 			return em.find(Frequencia.class, id);
-		} catch(Exception e) {
-			System.out.println("erro ao buscar frequencia");
 		} finally {
 			if(em != null) {
 				em.close();
 			}
 		}
-		return null;
+	}
+	@SuppressWarnings("unchecked")
+	public List<Frequencia> buscarTodos() {
+        List<Frequencia> resultado = null;
+        EntityManager em = null;
+        try {
+            em = this.getEntityManager();
+            em.getTransaction().begin();
+            resultado = em.createNamedQuery("Frequencia.findAll").getResultList();
+            em.getTransaction().commit();
+        } catch(Exception e) {
+            e.printStackTrace();
+        } finally {
+            if(em != null) {
+                em.close();
+            }
+        }
+        return resultado;
 	}
 	public void atualizar(Frequencia frequencia) {
 		EntityManager em = null;
@@ -60,7 +77,7 @@ public class FrequenciaService {
             em.getTransaction().commit();
 
 		} catch(Exception e) {
-			System.out.println("erro ao atualizar frequencia");
+			e.printStackTrace();
 		} finally {
 			if(em != null) {
 				em.close();
@@ -76,12 +93,12 @@ public class FrequenciaService {
 			try {
 				frequencia = em.getReference(Frequencia.class, id);
 			} catch(EntityNotFoundException e) {
-				System.out.println("erro ao encontrar frequencia");
+				e.printStackTrace();
 			}
 			em.remove(frequencia);
 			em.getTransaction().commit();
 		} catch(Exception e) {
-			System.out.println("erro ao remover frequencia");
+			e.printStackTrace();
 		} finally {
 			if(em != null) {
 				em.close();
