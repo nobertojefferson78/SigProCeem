@@ -15,12 +15,14 @@
         <class>modelos.NivelAcesso</class>
         <class>modelos.NotaSimulado</class>
         <class>modelos.Professor</class>
+        <class>modelos.Turma</class>
+        <class>modelos.Usuario</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/SigProCem"/>
             <property name="javax.persistence.jdbc.user" value="postgres"/>
-            <property name="javax.persistence.jdbc.password" value="12345"/>
+            <property name="javax.persistence.jdbc.password" value="postgres"/>
             <!--property name="eclipselink.logging.level" value="FINEST"/-->
             <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
             <property name="eclipselink.create-ddl-jdbc-file-name" value="createDDL_ddlGeneration.jdbc"/>
