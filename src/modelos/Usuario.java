@@ -1,8 +1,24 @@
 package modelos;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
+
+@Entity
+@NamedQueries({
+	@NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")
+})
 public class Usuario extends Pessoa {
 
-	private String login, senha;
+	private static final long serialVersionUID = 1L;
+	
+	@Column
+	private String login;
+	@Column
+	private String senha;
+	@OneToOne
 	private NivelAcesso nivelAcesso;
 	
 	public Usuario() {

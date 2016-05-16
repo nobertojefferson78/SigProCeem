@@ -1,23 +1,30 @@
 package modelos;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class NotaSimulado {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
-	private int id;
+@Entity
+@NamedQueries({
+	@NamedQuery(name = "NotaSimulado.findAll", query = "SELECT ns FROM NotaSimulado ns")
+})
+public class NotaSimulado extends BaseEntity implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
+	@Column
 	private double nota;
+	@Column
 	private Date data;
 	
 	public NotaSimulado() {
 		
 	}
 	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
 	public double getNota() {
 		return nota;
 	}

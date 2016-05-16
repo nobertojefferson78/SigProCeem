@@ -1,13 +1,29 @@
 package modelos;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Turma {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
-	private int id;
+@Entity
+@NamedQueries({
+	@NamedQuery(name = "Turma.findAll", query = "SELECT t FROM Turma t")
+})
+public class Turma extends BaseEntity implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
+	@Column
 	private int quantidadeAlunos;
+	@Column
 	private String localSala;
+	@OneToMany
 	private List<Disciplina> disciplinas;
+	@OneToMany
 	private List<Aluno> alunos;
 	
 	public Turma() {
@@ -27,12 +43,7 @@ public class Turma {
 		
 	}
 	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+	
 	public int getQuantidadeAlunos() {
 		return quantidadeAlunos;
 	}
