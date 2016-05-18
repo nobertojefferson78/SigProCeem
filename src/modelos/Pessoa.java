@@ -6,9 +6,14 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "Pessoa.FindAll", query = "SELECT p FROM Pessoa p")
+})
 public class Pessoa extends BaseEntity implements Serializable {
 	
 	private static final long serialVersionUID = 1L;

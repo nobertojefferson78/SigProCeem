@@ -14,6 +14,7 @@
 		<class>modelos.HistoricoEscolar</class>
         <class>modelos.NivelAcesso</class>
         <class>modelos.NotaSimulado</class>
+        <class>modelos.Pessoa</class>
         <class>modelos.Professor</class>
         <class>modelos.Turma</class>
         <class>modelos.Usuario</class>
