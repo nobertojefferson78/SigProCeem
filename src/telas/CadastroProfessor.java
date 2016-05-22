@@ -19,16 +19,16 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JSeparator;
 
 public class CadastroProfessor extends JFrame {
-
 	private JPanel contentPane;
 	private JTextField txtNome;
 	private JTextField txtCpf;
 	private JTextField txtRg;
-	private JTextField txtOrgaoEmaissor;
 	private JTextField txtDataNascimento;
 	private JTextField txtTelefone;
 	private JTextField txtEmail;
@@ -38,6 +38,7 @@ public class CadastroProfessor extends JFrame {
 	private JTextField txtCidade;
 	private JTextField txtCep1;
 	private JTextField txtCep2;
+	private JTextField txtMatricula;
 
 	/**
 	 * Launch the application.
@@ -51,13 +52,12 @@ public class CadastroProfessor extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					//usado para chamar o tema que eu quero neste caso o nimbus
 					UIManager.LookAndFeelInfo[] looks =   
 			        		UIManager.getInstalledLookAndFeels();
 					UIManager.setLookAndFeel(looks[1].getClassName());
-					
-					CadastroProfessor frame = new CadastroProfessor();
+					CadastroAluno frame = new CadastroAluno();
 					frame.setVisible(true);
-					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -69,9 +69,8 @@ public class CadastroProfessor extends JFrame {
 	 * Create the frame.
 	 */
 	public CadastroProfessor() {
-		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 633, 483);
+		setBounds(100, 100, 833, 597);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setToolTipText("");
@@ -222,139 +221,173 @@ public class CadastroProfessor extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setBorder(new CompoundBorder());
 		panel.setBackground(SystemColor.activeCaption);
-		panel.setBounds(12, 25, 604, 167);
+		panel.setBounds(204, 6, 604, 264);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblCep = new JLabel("CEP: ");
-		lblCep.setBounds(213, 141, 31, 14);
+		lblCep.setBounds(209, 222, 40, 14);
 		panel.add(lblCep);
 		
-		JLabel lblCidade = new JLabel("Cidade: ");
-		lblCidade.setBounds(10, 141, 53, 14);
-		panel.add(lblCidade);
-		
-		JLabel lblBairro = new JLabel("Bairro: ");
-		lblBairro.setBounds(10, 111, 53, 14);
-		panel.add(lblBairro);
-		
 		JLabel lblNumero = new JLabel("Numero: ");
-		lblNumero.setBounds(446, 113, 53, 14);
+		lblNumero.setBounds(443, 189, 53, 14);
 		panel.add(lblNumero);
 		
 		JLabel lblLogradouro = new JLabel("Rua: ");
-		lblLogradouro.setBounds(10, 88, 40, 14);
+		lblLogradouro.setBounds(6, 156, 40, 14);
 		panel.add(lblLogradouro);
 		
 		JLabel lblEmail = new JLabel("Email: ");
-		lblEmail.setBounds(213, 59, 40, 14);
+		lblEmail.setBounds(6, 126, 40, 14);
 		panel.add(lblEmail);
 		
-		JLabel lblTelefone = new JLabel("Telef.: ");
-		lblTelefone.setBounds(10, 62, 40, 14);
+		JLabel lblTelefone = new JLabel("Cel.: ");
+		lblTelefone.setBounds(209, 93, 62, 14);
 		panel.add(lblTelefone);
 		
 		JLabel lblDataNasc = new JLabel("Data Nasc.");
-		lblDataNasc.setBounds(446, 38, 64, 14);
+		lblDataNasc.setBounds(401, 63, 62, 14);
 		panel.add(lblDataNasc);
 		
-		JLabel lblOrgoEmissor = new JLabel("Org\u00E3o Emissor");
-		lblOrgoEmissor.setBounds(298, 38, 92, 14);
-		panel.add(lblOrgoEmissor);
-		
 		JLabel lblRg = new JLabel("R.G.: ");
-		lblRg.setBounds(166, 38, 40, 14);
+		lblRg.setBounds(209, 63, 38, 14);
 		panel.add(lblRg);
 		
 		JLabel lblCpf = new JLabel("cpf: ");
-		lblCpf.setBounds(10, 38, 40, 14);
+		lblCpf.setBounds(6, 63, 40, 14);
 		panel.add(lblCpf);
 		
 		JLabel lblNome = new JLabel("Nome: ");
-		lblNome.setBounds(10, 13, 40, 14);
+		lblNome.setBounds(6, 30, 40, 14);
 		panel.add(lblNome);
 		
 		txtNome = new JTextField();
-		txtNome.setBounds(68, 6, 526, 28);
+		txtNome.setBounds(74, 23, 523, 28);
 		panel.add(txtNome);
 		txtNome.setColumns(10);
 		
 		txtCpf = new JTextField();
-		txtCpf.setBounds(68, 31, 86, 28);
+		txtCpf.setBounds(74, 56, 125, 28);
 		panel.add(txtCpf);
 		txtCpf.setColumns(10);
 		
 		txtRg = new JTextField();
-		txtRg.setBounds(203, 31, 92, 28);
+		txtRg.setBounds(250, 56, 125, 28);
 		panel.add(txtRg);
 		txtRg.setColumns(10);
 		
-		txtOrgaoEmaissor = new JTextField();
-		txtOrgaoEmaissor.setBounds(392, 31, 44, 28);
-		panel.add(txtOrgaoEmaissor);
-		txtOrgaoEmaissor.setColumns(10);
-		
 		txtDataNascimento = new JTextField();
-		txtDataNascimento.setBounds(509, 31, 85, 28);
+		txtDataNascimento.setBounds(475, 56, 122, 28);
 		panel.add(txtDataNascimento);
 		txtDataNascimento.setColumns(10);
 		
 		txtTelefone = new JTextField();
-		txtTelefone.setBounds(68, 56, 136, 28);
+		txtTelefone.setBounds(250, 86, 126, 28);
 		panel.add(txtTelefone);
 		txtTelefone.setColumns(10);
 		
 		txtEmail = new JTextField();
-		txtEmail.setBounds(254, 56, 340, 28);
+		txtEmail.setBounds(74, 119, 523, 28);
 		panel.add(txtEmail);
 		txtEmail.setColumns(10);
 		
 		txtRua = new JTextField();
-		txtRua.setBounds(68, 81, 526, 28);
+		txtRua.setBounds(74, 149, 523, 28);
 		panel.add(txtRua);
 		txtRua.setColumns(10);
 		
 		txtNumero = new JTextField();
-		txtNumero.setBounds(509, 106, 85, 28);
+		txtNumero.setBounds(505, 182, 92, 28);
 		panel.add(txtNumero);
 		txtNumero.setColumns(10);
 		
 		txtBairro = new JTextField();
-		txtBairro.setBounds(68, 106, 368, 28);
+		txtBairro.setBounds(74, 182, 358, 28);
 		panel.add(txtBairro);
 		txtBairro.setColumns(10);
 		
 		txtCidade = new JTextField();
-		txtCidade.setBounds(68, 134, 135, 27);
+		txtCidade.setBounds(74, 215, 125, 28);
 		panel.add(txtCidade);
 		txtCidade.setColumns(10);
 		
 		txtCep1 = new JTextField();
-		txtCep1.setBounds(254, 134, 100, 27);
+		txtCep1.setBounds(250, 215, 100, 28);
 		panel.add(txtCep1);
 		txtCep1.setColumns(10);
 		
 		txtCep2 = new JTextField();
-		txtCep2.setBounds(372, 134, 64, 27);
+		txtCep2.setBounds(368, 215, 64, 28);
 		panel.add(txtCep2);
 		txtCep2.setColumns(10);
 		
 		JLabel lblEstado = new JLabel("Estado: ");
-		lblEstado.setBounds(446, 141, 46, 14);
+		lblEstado.setBounds(450, 222, 46, 14);
 		panel.add(lblEstado);
 		
 		JComboBox cboxEstado = new JComboBox();
-		cboxEstado.setBounds(509, 134, 85, 27);
+		cboxEstado.setBounds(505, 215, 92, 28);
 		panel.add(cboxEstado);
 		
 		JLabel label = new JLabel("-");
-		label.setBounds(352, 141, 22, 14);
+		label.setBounds(348, 222, 22, 14);
 		panel.add(label);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		
+		JLabel lblBairro = new JLabel("Bairro:");
+		lblBairro.setBounds(6, 188, 55, 16);
+		panel.add(lblBairro);
+		
+		JLabel lblCidade = new JLabel("Cidade:");
+		lblCidade.setBounds(6, 221, 55, 16);
+		panel.add(lblCidade);
+		
+		JLabel lblMatricula = new JLabel("Matricula: ");
+		lblMatricula.setBounds(6, 92, 55, 16);
+		panel.add(lblMatricula);
+		
+		txtMatricula = new JTextField();
+		txtMatricula.setBounds(74, 86, 125, 28);
+		panel.add(txtMatricula);
+		txtMatricula.setColumns(10);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(SystemColor.activeCaption);
+		panel_2.setBounds(10, 6, 182, 264);
+		contentPane.add(panel_2);
+		panel_2.setLayout(null);
+		
+		JButton button = new JButton("");
+		button.setIcon(new ImageIcon("C:\\Users\\Norberto\\git\\SigProCeem\\image\\fotoInicial2.png"));
+		button.setEnabled(false);
+		button.setBounds(6, 6, 170, 172);
+		panel_2.add(button);
+		
+		JButton btnNovaImagem = new JButton("Nova Imagem");
+		btnNovaImagem.setBounds(17, 190, 146, 28);
+		panel_2.add(btnNovaImagem);
+		
+		JButton btnRemoverImagem = new JButton("Remover Imagem");
+		btnRemoverImagem.setBounds(17, 218, 146, 28);
+		panel_2.add(btnRemoverImagem);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(SystemColor.activeCaption);
+		panel_3.setBounds(9, 480, 799, 47);
+		contentPane.add(panel_3);
+		panel_3.setLayout(null);
+		
+		JButton btnNewButton = new JButton("Salvar");
+		btnNewButton.setBounds(242, 6, 136, 35);
+		panel_3.add(btnNewButton);
+		
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(390, 6, 136, 35);
+		panel_3.add(btnCancelar);
+		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(SystemColor.activeCaption);
-		panel_1.setBounds(12, 195, 604, 187);
+		panel_1.setBounds(10, 282, 798, 187);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -364,7 +397,7 @@ public class CadastroProfessor extends JFrame {
 		
 		JLabel lblSegunda = new JLabel("Segunda");
 		lblSegunda.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSegunda.setBounds(71, 31, 87, 14);
+		lblSegunda.setBounds(109, 31, 87, 14);
 		panel_1.add(lblSegunda);
 		
 		JLabel lblManh = new JLabel("Manh\u00E3");
@@ -380,219 +413,219 @@ public class CadastroProfessor extends JFrame {
 		panel_1.add(lblNoite);
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(10, 92, 582, 2);
+		separator.setBounds(10, 92, 782, 2);
 		panel_1.add(separator);
 		
 		JCheckBox cbox2m12 = new JCheckBox("1/2");
 		cbox2m12.setBackground(SystemColor.activeCaption);
-		cbox2m12.setBounds(71, 61, 47, 23);
+		cbox2m12.setBounds(109, 61, 47, 23);
 		panel_1.add(cbox2m12);
 		
 		JCheckBox cbox2m34 = new JCheckBox("3/4");
 		cbox2m34.setBackground(SystemColor.activeCaption);
-		cbox2m34.setBounds(119, 61, 39, 23);
+		cbox2m34.setBounds(157, 61, 39, 23);
 		panel_1.add(cbox2m34);
 		
 		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(10, 132, 582, 2);
+		separator_1.setBounds(10, 132, 782, 2);
 		panel_1.add(separator_1);
 		
 		JSeparator separator_2 = new JSeparator();
-		separator_2.setBounds(10, 173, 582, 2);
+		separator_2.setBounds(10, 173, 782, 2);
 		panel_1.add(separator_2);
 		
 		JCheckBox cbox2t12 = new JCheckBox("1/2");
 		cbox2t12.setBackground(SystemColor.activeCaption);
-		cbox2t12.setBounds(72, 101, 46, 23);
+		cbox2t12.setBounds(110, 101, 46, 23);
 		panel_1.add(cbox2t12);
 		
 		JCheckBox cbox2n12 = new JCheckBox("1/2");
 		cbox2n12.setBackground(SystemColor.activeCaption);
-		cbox2n12.setBounds(71, 142, 46, 23);
+		cbox2n12.setBounds(109, 142, 46, 23);
 		panel_1.add(cbox2n12);
 		
 		JCheckBox cbox2t34 = new JCheckBox("3/4");
 		cbox2t34.setBackground(SystemColor.activeCaption);
-		cbox2t34.setBounds(119, 101, 39, 23);
+		cbox2t34.setBounds(157, 101, 39, 23);
 		panel_1.add(cbox2t34);
 		
 		JCheckBox cbox2n34 = new JCheckBox("3/4");
 		cbox2n34.setBackground(SystemColor.activeCaption);
-		cbox2n34.setBounds(119, 142, 39, 23);
+		cbox2n34.setBounds(157, 142, 39, 23);
 		panel_1.add(cbox2n34);
 		
 		JSeparator separator_4 = new JSeparator();
-		separator_4.setBounds(10, 52, 582, 2);
+		separator_4.setBounds(10, 52, 782, 2);
 		panel_1.add(separator_4);
 		
 		JLabel lblTera = new JLabel("Ter\u00E7a");
 		lblTera.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTera.setBounds(170, 31, 101, 14);
+		lblTera.setBounds(250, 31, 101, 14);
 		panel_1.add(lblTera);
 		
 		JCheckBox cbox3m12 = new JCheckBox("1/2");
 		cbox3m12.setBackground(SystemColor.activeCaption);
-		cbox3m12.setBounds(174, 61, 46, 23);
+		cbox3m12.setBounds(254, 61, 46, 23);
 		panel_1.add(cbox3m12);
 		
 		JCheckBox cbox3m34 = new JCheckBox("3/4");
 		cbox3m34.setBackground(SystemColor.activeCaption);
-		cbox3m34.setBounds(222, 61, 39, 23);
+		cbox3m34.setBounds(302, 61, 39, 23);
 		panel_1.add(cbox3m34);
 		
 		JCheckBox cbox3t34 = new JCheckBox("3/4");
 		cbox3t34.setBackground(SystemColor.activeCaption);
-		cbox3t34.setBounds(222, 101, 39, 23);
+		cbox3t34.setBounds(302, 101, 39, 23);
 		panel_1.add(cbox3t34);
 		
 		JCheckBox cbox3t12 = new JCheckBox("1/2");
 		cbox3t12.setBackground(SystemColor.activeCaption);
-		cbox3t12.setBounds(175, 101, 46, 23);
+		cbox3t12.setBounds(255, 101, 46, 23);
 		panel_1.add(cbox3t12);
 		
 		JCheckBox cbox3n12 = new JCheckBox("1/2");
 		cbox3n12.setBackground(SystemColor.activeCaption);
-		cbox3n12.setBounds(174, 143, 46, 23);
+		cbox3n12.setBounds(254, 143, 46, 23);
 		panel_1.add(cbox3n12);
 		
 		JCheckBox cbox3n34 = new JCheckBox("3/4");
 		cbox3n34.setBackground(SystemColor.activeCaption);
-		cbox3n34.setBounds(222, 143, 39, 23);
+		cbox3n34.setBounds(302, 143, 39, 23);
 		panel_1.add(cbox3n34);
 		
 		JCheckBox cbox4m12 = new JCheckBox("1/2");
 		cbox4m12.setBackground(SystemColor.activeCaption);
-		cbox4m12.setBounds(279, 61, 46, 23);
+		cbox4m12.setBounds(400, 61, 46, 23);
 		panel_1.add(cbox4m12);
 		
 		JCheckBox cbox4m34 = new JCheckBox("3/4");
 		cbox4m34.setBackground(SystemColor.activeCaption);
-		cbox4m34.setBounds(327, 61, 39, 23);
+		cbox4m34.setBounds(448, 61, 39, 23);
 		panel_1.add(cbox4m34);
 		
 		JCheckBox cbox4t12 = new JCheckBox("1/2");
 		cbox4t12.setBackground(SystemColor.activeCaption);
-		cbox4t12.setBounds(280, 101, 46, 23);
+		cbox4t12.setBounds(401, 101, 46, 23);
 		panel_1.add(cbox4t12);
 		
 		JCheckBox cbox4t34 = new JCheckBox("3/4");
 		cbox4t34.setBackground(SystemColor.activeCaption);
-		cbox4t34.setBounds(327, 101, 39, 23);
+		cbox4t34.setBounds(448, 101, 39, 23);
 		panel_1.add(cbox4t34);
 		
 		JCheckBox cbox4n12 = new JCheckBox("1/2");
 		cbox4n12.setBackground(SystemColor.activeCaption);
-		cbox4n12.setBounds(279, 143, 46, 23);
+		cbox4n12.setBounds(400, 143, 46, 23);
 		panel_1.add(cbox4n12);
 		
 		JCheckBox cbox4n34 = new JCheckBox("3/4");
 		cbox4n34.setBackground(SystemColor.activeCaption);
-		cbox4n34.setBounds(327, 143, 39, 23);
+		cbox4n34.setBounds(448, 143, 39, 23);
 		panel_1.add(cbox4n34);
 		
 		JSeparator separator_7 = new JSeparator();
 		separator_7.setOrientation(SwingConstants.VERTICAL);
-		separator_7.setBounds(485, 31, 2, 144);
+		separator_7.setBounds(661, 31, 2, 144);
 		panel_1.add(separator_7);
 		
 		JCheckBox cbox6m12 = new JCheckBox("1/2");
 		cbox6m12.setBackground(SystemColor.activeCaption);
-		cbox6m12.setBounds(495, 61, 46, 23);
+		cbox6m12.setBounds(691, 61, 46, 23);
 		panel_1.add(cbox6m12);
 		
 		JCheckBox cbox6m34 = new JCheckBox("3/4");
 		cbox6m34.setBackground(SystemColor.activeCaption);
-		cbox6m34.setBounds(543, 61, 39, 23);
+		cbox6m34.setBounds(739, 61, 39, 23);
 		panel_1.add(cbox6m34);
 		
 		JCheckBox cbox6t12 = new JCheckBox("1/2");
 		cbox6t12.setBackground(SystemColor.activeCaption);
-		cbox6t12.setBounds(496, 101, 46, 23);
+		cbox6t12.setBounds(692, 101, 46, 23);
 		panel_1.add(cbox6t12);
 		
 		JCheckBox cbox6t34 = new JCheckBox("3/4");
 		cbox6t34.setBackground(SystemColor.activeCaption);
-		cbox6t34.setBounds(543, 101, 39, 23);
+		cbox6t34.setBounds(739, 101, 39, 23);
 		panel_1.add(cbox6t34);
 		
 		JCheckBox cbox6n34 = new JCheckBox("3/4");
 		cbox6n34.setBackground(SystemColor.activeCaption);
-		cbox6n34.setBounds(543, 143, 39, 23);
+		cbox6n34.setBounds(739, 143, 39, 23);
 		panel_1.add(cbox6n34);
 		
 		JCheckBox cbox6n12 = new JCheckBox("1/2");
 		cbox6n12.setBackground(SystemColor.activeCaption);
-		cbox6n12.setBounds(495, 143, 46, 23);
+		cbox6n12.setBounds(691, 143, 46, 23);
 		panel_1.add(cbox6n12);
 		
 		JCheckBox cbox5m34 = new JCheckBox("3/4");
 		cbox5m34.setBackground(SystemColor.activeCaption);
-		cbox5m34.setBounds(431, 61, 46, 23);
+		cbox5m34.setBounds(589, 61, 46, 23);
 		panel_1.add(cbox5m34);
 		
 		JCheckBox cbox5m12 = new JCheckBox("1/2");
 		cbox5m12.setBackground(SystemColor.activeCaption);
-		cbox5m12.setBounds(383, 61, 46, 23);
+		cbox5m12.setBounds(541, 61, 46, 23);
 		panel_1.add(cbox5m12);
 		
 		JCheckBox cbox5t12 = new JCheckBox("1/2");
 		cbox5t12.setBackground(SystemColor.activeCaption);
-		cbox5t12.setBounds(384, 101, 46, 23);
+		cbox5t12.setBounds(542, 101, 46, 23);
 		panel_1.add(cbox5t12);
 		
 		JCheckBox cbox5t34 = new JCheckBox("3/4");
 		cbox5t34.setBackground(SystemColor.activeCaption);
-		cbox5t34.setBounds(431, 101, 46, 23);
+		cbox5t34.setBounds(589, 101, 46, 23);
 		panel_1.add(cbox5t34);
 		
 		JCheckBox cbox5n34 = new JCheckBox("3/4");
 		cbox5n34.setBackground(SystemColor.activeCaption);
-		cbox5n34.setBounds(431, 143, 46, 23);
+		cbox5n34.setBounds(589, 143, 46, 23);
 		panel_1.add(cbox5n34);
 		
 		JCheckBox cbox5n12 = new JCheckBox("1/2");
 		cbox5n12.setBackground(SystemColor.activeCaption);
-		cbox5n12.setBounds(383, 143, 46, 23);
+		cbox5n12.setBounds(541, 143, 46, 23);
 		panel_1.add(cbox5n12);
 		
 		JLabel lblQuarta = new JLabel("Quarta");
 		lblQuarta.setHorizontalAlignment(SwingConstants.CENTER);
-		lblQuarta.setBounds(279, 31, 87, 14);
+		lblQuarta.setBounds(400, 31, 87, 14);
 		panel_1.add(lblQuarta);
 		
 		JLabel lblQuinta = new JLabel("Quinta");
 		lblQuinta.setHorizontalAlignment(SwingConstants.CENTER);
-		lblQuinta.setBounds(383, 31, 90, 14);
+		lblQuinta.setBounds(541, 31, 90, 14);
 		panel_1.add(lblQuinta);
 		
 		JLabel lblSexta = new JLabel("Sexta");
 		lblSexta.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSexta.setBounds(495, 31, 87, 14);
+		lblSexta.setBounds(691, 31, 87, 14);
 		panel_1.add(lblSexta);
 		
 		JSeparator separator_3 = new JSeparator();
 		separator_3.setOrientation(SwingConstants.VERTICAL);
-		separator_3.setBounds(373, 31, 2, 144);
+		separator_3.setBounds(512, 31, 2, 144);
 		panel_1.add(separator_3);
 		
 		JSeparator separator_5 = new JSeparator();
 		separator_5.setOrientation(SwingConstants.VERTICAL);
-		separator_5.setBounds(269, 31, 2, 144);
+		separator_5.setBounds(372, 31, 2, 144);
 		panel_1.add(separator_5);
 		
 		JSeparator separator_6 = new JSeparator();
 		separator_6.setOrientation(SwingConstants.VERTICAL);
-		separator_6.setBounds(166, 31, 2, 144);
+		separator_6.setBounds(224, 31, 2, 144);
 		panel_1.add(separator_6);
 		
 		JSeparator separator_8 = new JSeparator();
 		separator_8.setOrientation(SwingConstants.VERTICAL);
-		separator_8.setBounds(61, 31, 2, 144);
+		separator_8.setBounds(82, 37, 2, 144);
 		panel_1.add(separator_8);
 		
 		JSeparator separator_9 = new JSeparator();
 		separator_9.setOrientation(SwingConstants.VERTICAL);
-		separator_9.setBounds(590, 31, 2, 144);
+		separator_9.setBounds(790, 31, 2, 144);
 		panel_1.add(separator_9);
 	}
 }
