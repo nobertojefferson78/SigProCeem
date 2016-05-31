@@ -1,5 +1,5 @@
 
-import controladores.ControladorAluno;
+//import controladores.ControladorAluno;
 import dao.AlunoService;
 import dao.util.JPAUtil;
 import modelos.Aluno;
@@ -15,7 +15,7 @@ public class Main {
 		
 		AlunoService alunoServ = new AlunoService(JPAUtil.EMF);
 		
-		ControladorAluno contr = new ControladorAluno(alunoServ);
+	//	ControladorAluno contr = new ControladorAluno(alunoServ);
 		
 		aluno.setNome("aluno");
 		
@@ -26,7 +26,7 @@ public class Main {
 		
 		System.out.println(aluno.getId() + "");
 		
-		aluno = contr.inserirAlunoDB(aluno);
+		//aluno = contr.inserirAlunoDB(aluno);
 		
 		System.out.println(aluno.getId() + "");
 	}

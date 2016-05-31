@@ -41,15 +41,6 @@ public class Principal extends JFrame {
 	public Principal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 640, 480);
-		
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
-		
-		JMenu mnMenu = new JMenu("Menu 1");
-		menuBar.add(mnMenu);
-		
-		JMenu mnMenu_1 = new JMenu("Menu 2");
-		menuBar.add(mnMenu_1);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

@@ -436,7 +436,7 @@ public class CadastroAluno extends JFrame {
 		panel_2.setLayout(null);
 		
 		JButton button = new JButton("");
-		button.setIcon(new ImageIcon("C:\\Users\\Norberto\\git\\SigProCeem\\image\\fotoInicial2.png"));
+		button.setIcon(new ImageIcon("C:\\Users\\jefferson\\git\\SigProCeem\\image\\fotoInicial2.png"));
 		button.setEnabled(false);
 		button.setBounds(6, 6, 170, 172);
 		panel_2.add(button);
